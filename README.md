@@ -1,1 +1,1 @@
-### React Native Architecture
+![](https://github.com/Liqiankun/DLReactNativeArchitecture/blob/master/switch_navigator.png)
