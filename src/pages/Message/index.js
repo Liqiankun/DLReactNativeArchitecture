@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {
     Text,
-    View
+    View,
+    SafeAreaView
 }  from 'react-native'
 
 import styles from '../../styles'
@@ -9,9 +10,9 @@ import styles from '../../styles'
 export default class Message extends Component {
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <Text>Message Page</Text>
-            </View>
+            </SafeAreaView>
         )
     }
 }

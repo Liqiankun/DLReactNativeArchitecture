@@ -2,12 +2,16 @@ import React from 'react'
 import { Image } from 'react-native'
 import {
     createBottomTabNavigator,
-    createAppContainer
+    createAppContainer,
+    createStackNavigator,
+    createSwitchNavigator
 } from 'react-navigation'
 
 import HomePage from '../pages/Home'
 import MessagePage from '../pages/Message'
 import ProfilePage from '../pages/Profile'
+import HomeDetailPage from  '../pages/Home/detail'
+import LaunchPage from '../pages/Launch'
 
 import styles from '../styles'
 
@@ -39,9 +43,43 @@ const tabarIcons = {
     }
 }
 
+const HomeStack = createStackNavigator({
+    Home: {
+       screen: HomePage,
+       navigationOptions: {
+           title: '首页'
+       }
+    },
+    HomeDetail: {
+       screen: HomeDetailPage,
+       navigationOptions: {
+           title: '详情'
+       } 
+    }
+}, {
+    defaultNavigationOptions: {
+        headerStyle: {
+            backgroundColor: "#fff",
+            borderBottomWidth: 0,
+        },
+        headerTintColor: "#5B99FA",
+        headerBackTitle: null
+    }
+})
+
+HomeStack.navigationOptions = ({ navigation }) => {
+    let tabBarVisible = true
+    if (navigation.state.index > 0) {
+        tabBarVisible = false
+    }
+    return {
+        tabBarVisible
+    }
+}
+
 const tabBarStack = createBottomTabNavigator({
     Home: {
-        screen: HomePage,
+        screen: HomeStack,
         navigationOptions: {
             tabBarLabel: '首页'
         }   
@@ -55,7 +93,7 @@ const tabBarStack = createBottomTabNavigator({
     Profile: {
         screen: ProfilePage,
         navigationOptions: {
-            header: null
+            tabBarLabel: '我的'
         }
     }
 }, {
@@ -71,4 +109,19 @@ const tabBarStack = createBottomTabNavigator({
     }
 })
 
-export default createAppContainer(tabBarStack)
+
+const switchStack = createSwitchNavigator({
+    Launch: {
+        screen: LaunchPage,
+        navigationOptions: {
+            header: null
+        }
+    },
+    Tabbar: {
+        screen: tabBarStack
+    }
+}, {
+    initialRouteName: 'Launch'
+})
+
+export default createAppContainer(switchStack)
