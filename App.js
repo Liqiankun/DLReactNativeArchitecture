@@ -19,14 +19,14 @@ const middlewareConfig = {
         request: [
             {
                 success: async function (_, req) {
-                    const token = await AsyncStorage.getItem('user_token')
+                    // const token = await AsyncStorage.getItem('user_token')
                     const newReq = {
                         ...req,
                         headers: {
                             ...req.headers,
                             common: {
                                 ...req.headers.common,
-                                Authorization: token
+                                // Authorization: token
                             },
                         }
                     }
