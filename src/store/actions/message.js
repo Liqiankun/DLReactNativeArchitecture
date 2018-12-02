@@ -1,5 +1,6 @@
 import {
-    FETCH_MESSAGE_LIST
+    FETCH_MESSAGE_LIST,
+    REMOVE_MESSAGE_WITH_ID
 } from '../types/message'
 
 export function fetchMessageList(params) {
@@ -11,6 +12,15 @@ export function fetchMessageList(params) {
                 url: `/search/repositories`,
                 params
             }
+        }
+    }
+}
+
+export function deleteMessage(itemId) {
+    return {
+        type: REMOVE_MESSAGE_WITH_ID,
+        payload: {
+            itemId
         }
     }
 }

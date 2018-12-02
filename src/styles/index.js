@@ -1,11 +1,21 @@
 import { getStatusBarHeight } from 'react-native-status-bar-height'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+import DeviceInfo from 'react-native-device-info'
+
+const { width, height } = Dimensions.get('window')
+const notchHeight = getStatusBarHeight()
+const navigationBarHeight = DeviceInfo.hasNotch() ? 88 : 64
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    webView: {
+        width: width,
+        height: height,
+        marginTop: navigationBarHeight - notchHeight
     },
     listView: {
         flex: 1,
@@ -38,11 +48,11 @@ const styles = StyleSheet.create({
     },
     messageItemContainer: {
         width: '100%',
-        height: 70,
         paddingHorizontal: 15,
+        paddingVertical: 15,
         flexDirection: 'row',
         justifyContent: 'flex-start',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         borderBottomWidth: 1.5,
         borderBottomColor: '#eee'
     },
@@ -66,7 +76,41 @@ const styles = StyleSheet.create({
     },
     descriptionText: {
         fontSize: 13,
-        color: '#999'
+        color: '#999',
+        lineHeight: 18,
+        marginTop: 4
+    },
+    navigationBar: {
+        position: 'absolute',
+        top: 0,
+        zIndex: 100,
+        width: '100%',
+        height: navigationBarHeight,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white'
+    },
+    navigationTitleText: {
+        position: 'absolute',
+        bottom: 15,
+        fontSize: 15,
+        fontWeight: '500',
+        color: '#6699ff'
+    },
+    backButton: {
+        position: 'absolute',
+        width: 12,
+        height: 21,
+        left: 12,
+        bottom: 10
+    },
+    deleteButton: {
+        position: 'absolute',
+        width: 21,
+        height: 21,
+        right: 12,
+        bottom: 10
     }
 })
 

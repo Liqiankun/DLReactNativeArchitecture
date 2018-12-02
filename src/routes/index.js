@@ -9,6 +9,7 @@ import {
 
 import HomePage from '../pages/Home'
 import MessagePage from '../pages/Message'
+import MessageDetailPage from '../pages/Message/detail'
 import ProfilePage from '../pages/Profile'
 import HomeDetailPage from  '../pages/Home/detail'
 import LaunchPage from '../pages/Launch'
@@ -77,7 +78,32 @@ HomeStack.navigationOptions = ({ navigation }) => {
     }
 }
 
-const tabBarStack = createBottomTabNavigator({
+const MessageStack = createStackNavigator({
+    Message: {
+        screen: MessagePage,
+        navigationOptions: {
+            header: null
+        }
+    },
+    MessageDetail: {
+        screen: MessageDetailPage,
+        navigationOptions: {
+            header: null
+        }
+    }
+}, {
+    defaultNavigationOptions: {
+        
+        headerStyle: {
+            backgroundColor: "#fff",
+            borderBottomWidth: 0,
+        },
+        headerTintColor: "#5B99FA",
+        headerBackTitle: null
+    }
+})
+
+const TabBarStack = createBottomTabNavigator({
     Home: {
         screen: HomeStack,
         navigationOptions: {
@@ -85,7 +111,7 @@ const tabBarStack = createBottomTabNavigator({
         }   
     },
     Message: {
-        screen: MessagePage,
+        screen: MessageStack,
         navigationOptions: {
             tabBarLabel: '信息'
         }
@@ -110,7 +136,7 @@ const tabBarStack = createBottomTabNavigator({
 })
 
 
-const switchStack = createSwitchNavigator({
+const SwitchStack = createSwitchNavigator({
     Launch: {
         screen: LaunchPage,
         navigationOptions: {
@@ -118,10 +144,10 @@ const switchStack = createSwitchNavigator({
         }
     },
     Tabbar: {
-        screen: tabBarStack
+        screen: TabBarStack
     }
 }, {
     initialRouteName: 'Launch'
 })
 
-export default createAppContainer(switchStack)
+export default createAppContainer(SwitchStack)

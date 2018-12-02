@@ -11,6 +11,7 @@
     "prop-types": "^15.6.2",
     "react": "16.6.1",
     "react-native": "0.57.6",
+    "react-native-device-info": "^0.24.3",
     "react-native-dropdownalert": "^3.7.1",
     "react-native-gesture-handler": "^1.0.10",
     "react-native-status-bar-height": "^2.2.0",

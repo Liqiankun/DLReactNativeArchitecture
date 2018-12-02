@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import {
-    Text,
-    View,
     SafeAreaView,
     FlatList,
     ActivityIndicator
@@ -19,8 +17,8 @@ import { fetchMessageList } from '../../store/actions/message'
         }).then(res => console.log('res----', res))
     }
     render() {
-        const { loading, list } = this.props
-        console.log('loading list', loading, list)
+        const { loading, list, navigation } = this.props
+        const { navigate } = navigation
         return (
             <SafeAreaView style={styles.container}>
                 {
@@ -31,6 +29,10 @@ import { fetchMessageList } from '../../store/actions/message'
                         renderItem={(r) => (
                             <MessageItem
                                 itemData={r.item}
+                                onItem={() => navigate('MessageDetail', {
+                                    itemId: r.item.id,
+                                    uri: r.item.html_url
+                                })}
                             />
                         )}
                     />                    
