@@ -1,0 +1,9 @@
+{
+    "extends": "eslint-config-rallycoding",
+    "parser": "babel-eslint",
+    "rules": {
+        "semi": 0,
+        "global-require": 0,
+        "arrow-body-style": 0
+    }
+}

@@ -14,6 +14,7 @@ const client = axios.create({
     baseURL: 'https://api.github.com',
     responseType: 'json'
 })
+
 const middlewareConfig = {
     interceptors: {
         request: [
@@ -47,6 +48,7 @@ const middlewareConfig = {
         ]
     }
 }
+
 const store = createStore(reducers, applyMiddleware(axiosMiddleware(client, middlewareConfig), logger))
 
 console.disableYellowBox = true

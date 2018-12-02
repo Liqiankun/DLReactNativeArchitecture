@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import {
     SafeAreaView,
     FlatList,
-    ActivityIndicator
-}  from 'react-native'
+    ActivityIndicator,
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import styles from '../../styles'
@@ -14,7 +14,7 @@ import { fetchMessageList } from '../../store/actions/message'
     componentDidMount() {
         this.props.fetchList({
             q: 'react native'
-        }).then(res => console.log('res----', res))
+        }).then()
     }
     render() {
         const { loading, list, navigation } = this.props

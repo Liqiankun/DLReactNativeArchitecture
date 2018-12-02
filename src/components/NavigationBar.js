@@ -5,7 +5,6 @@ import {
     Text,
     Image
 } from 'react-native'
-import { HeaderBackButton } from 'react-navigation'
 import PropTypes from 'prop-types'
 import styles from '../styles'
 

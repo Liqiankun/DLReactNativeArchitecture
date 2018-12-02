@@ -9,7 +9,7 @@ export function fetchMessageList(params) {
         payload: {
             request: {
                 method: 'GET',
-                url: `/search/repositories`,
+                url: '/search/repositories',
                 params
             }
         }
@@ -25,7 +25,7 @@ export function deleteMessage(itemId) {
     }
 }
 
-export function composeMessage() {
+export function composeMessage(name) {
     return {
         type: FETCH_MESSAGE_LIST,
         payload: {
