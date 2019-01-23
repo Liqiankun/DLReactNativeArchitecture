@@ -4,3 +4,5 @@
 * `npm i`
 * `react-native link`
 * `react-native run-ios --simulator='iPhone XS'`
+
+## More functions is coming!
