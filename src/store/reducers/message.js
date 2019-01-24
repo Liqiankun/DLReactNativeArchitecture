@@ -2,13 +2,15 @@ import {
     FETCH_MESSAGE_LIST,
     FETCH_MESSAGE_LIST_SUCCESS,
     FETCH_MESSAGE_LIST_FAIL,
-    REMOVE_MESSAGE_WITH_ID
+    REMOVE_MESSAGE_WITH_ID,
+    INCREASE_UNREAD_COUNT
 } from '../types/message'
 
 const initialState = {
     list: [],
     loading: false,
-    error: null
+    error: null,
+    unreadCount: 1
 }
 
 export default function reducer(state = initialState, action) {
@@ -36,6 +38,12 @@ export default function reducer(state = initialState, action) {
             return {
                 ...state,
                 list: state.list.filter(l => l.id !== itemId)
+            }
+        }
+        case INCREASE_UNREAD_COUNT: {
+            return {
+                ...state,
+                unreadCount: state.unreadCount + 1
             }
         }
         default: 

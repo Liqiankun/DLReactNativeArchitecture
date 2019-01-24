@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     webView: {
-        width: width,
-        height: height,
+        width,
+        height,
         marginTop: navigationBarHeight - notchHeight
     },
     listView: {
@@ -32,19 +32,21 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     buttonContainer: {
-        position: 'absolute',
         width: 60,
         height: 30,
         borderRadius: 15,
         backgroundColor: '#ccc',
-        right: 20,
-        top: getStatusBarHeight() + 10
     },
     buttonTitle: {
         fontSize: 14,
         color: 'white',
         textAlign: 'center',
         lineHeight: 30
+    },
+    launchButton: {
+        position: 'absolute',
+        right: 20,
+        top: getStatusBarHeight() + 10
     },
     messageItemContainer: {
         width: '100%',
@@ -111,6 +113,36 @@ const styles = StyleSheet.create({
         height: 21,
         right: 12,
         bottom: 10
+    },
+    itemContainer: {
+        zIndex: 0,
+        flex: 1,
+        alignSelf: 'stretch',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+    },
+    badgeContainer: {
+        position: 'absolute',
+        top: 4,
+        left: 65,
+        borderRadius: 8,
+        backgroundColor: 'red',
+        paddingHorizontal: 4,
+        zIndex: 2
+    },
+    badgeCount: {
+        color: 'white',
+        fontSize: 12,
+        fontWeight: '500'
+    },
+    iconImage: {
+        width: 22,
+        height: 22
+    },
+    unreadButton: {
+        backgroundColor: '#6699ff',
+        marginTop: 10,
+        width: 130
     }
 })
 

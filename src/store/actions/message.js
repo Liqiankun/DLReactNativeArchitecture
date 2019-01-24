@@ -1,6 +1,7 @@
 import {
     FETCH_MESSAGE_LIST,
-    REMOVE_MESSAGE_WITH_ID
+    REMOVE_MESSAGE_WITH_ID,
+    INCREASE_UNREAD_COUNT
 } from '../types/message'
 
 export function fetchMessageList(params) {
@@ -13,6 +14,12 @@ export function fetchMessageList(params) {
                 params
             }
         }
+    }
+}
+
+export function increaseUnreadCount() {
+    return {
+        type: INCREASE_UNREAD_COUNT
     }
 }
 

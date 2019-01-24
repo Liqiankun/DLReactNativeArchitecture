@@ -11,8 +11,9 @@ import HomePage from '../pages/Home'
 import MessagePage from '../pages/Message'
 import MessageDetailPage from '../pages/Message/detail'
 import ProfilePage from '../pages/Profile'
-import HomeDetailPage from  '../pages/Home/detail'
+import HomeDetailPage from '../pages/Home/detail'
 import LaunchPage from '../pages/Launch'
+import BadgeItem from '../components/BadgeTabbarItem'
 
 import styles from '../styles'
 
@@ -37,9 +38,7 @@ const tabarIcons = {
     },
     Profile: {
         render: focused => {
-            return focused
-                ? _renderTabbarIcon(require('../images/tabbar_profile_selected.png'))
-                : _renderTabbarIcon(require('../images/tabbar_profile.png'))
+            return <BadgeItem focused={focused} />
         }
     }
 }
@@ -60,10 +59,10 @@ const HomeStack = createStackNavigator({
 }, {
     defaultNavigationOptions: {
         headerStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: '#fff',
             borderBottomWidth: 0,
         },
-        headerTintColor: "#5B99FA",
+        headerTintColor: '#5B99FA',
         headerBackTitle: null
     }
 })
@@ -95,10 +94,10 @@ const MessageStack = createStackNavigator({
     defaultNavigationOptions: {
         
         headerStyle: {
-            backgroundColor: "#fff",
+            backgroundColor: '#fff',
             borderBottomWidth: 0,
         },
-        headerTintColor: "#5B99FA",
+        headerTintColor: '#5B99FA',
         headerBackTitle: null
     }
 })

@@ -19,6 +19,7 @@ export default class Launch extends Component {
                 >
                     <Button 
                         title='跳过'
+                        buttonStyle={styles.launchButton}
                         onPress={() => {
                             navigate('Tabbar')
                         }}

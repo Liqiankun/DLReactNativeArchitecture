@@ -6,15 +6,16 @@ import {
 import styles from '../styles'
 import PropTypes from 'prop-types'
 
-const Button = ({ title, onPress }) => (
-    <TouchableOpacity style={styles.buttonContainer} activeOpacity={0.8} onPress={() => onPress && onPress()}>
+const Button = ({ title, onPress, buttonStyle }) => (
+    <TouchableOpacity style={[styles.buttonContainer, buttonStyle]} activeOpacity={0.8} onPress={() => onPress && onPress()}>
         <Text style={styles.buttonTitle}>{title}</Text>
     </TouchableOpacity>
 )
 
 Button.propTypes = {
     title: PropTypes.string,
-    onPress: PropTypes.func
+    onPress: PropTypes.func,
+    buttonStyle: PropTypes.object
 }
 
 export default Button
