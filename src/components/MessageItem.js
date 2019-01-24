@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-    TouchableWithoutFeedback,
+    TouchableOpacity,
     View,
     Text,
     Image
@@ -9,15 +9,13 @@ import PropTypes from 'prop-types'
 import styles from '../styles'
 
 const MessageItem = ({ itemData, onItem }) => (
-    <TouchableWithoutFeedback onPress={() => onItem && onItem(itemData.id)}>
-        <View style={styles.messageItemContainer}>
-            <Image style={styles.avatar} source={{ uri: itemData.owner.avatar_url }} />
-            <View style={styles.nameDescriptionContainer}>
-                <Text style={styles.nameText}>{itemData.name}</Text>
-                <Text style={styles.descriptionText}>{itemData.description}</Text>
-            </View>
+    <TouchableOpacity style={styles.messageItemContainer} activeOpacity={0.8} onPress={() => onItem && onItem(itemData.id)}>
+        <Image style={styles.avatar} source={{ uri: itemData.owner.avatar_url }} />
+        <View style={styles.nameDescriptionContainer}>
+            <Text style={styles.nameText}>{itemData.name}</Text>
+            <Text style={styles.descriptionText}>{itemData.description}</Text>
         </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
 )
 
 MessageItem.propTypes = {

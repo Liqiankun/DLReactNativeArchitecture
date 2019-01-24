@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
     View,
     ImageBackground
-}  from 'react-native'
+} from 'react-native'
 
 import styles from '../../styles'
 import Button from '../../components/Button'
@@ -20,7 +20,6 @@ export default class Launch extends Component {
                     <Button 
                         title='跳过'
                         onPress={() => {
-                            console.log('onPress ------ ')
                             navigate('Tabbar')
                         }}
                     />

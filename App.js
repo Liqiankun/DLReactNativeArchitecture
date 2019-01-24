@@ -7,7 +7,6 @@ import axios from 'axios'
 import axiosMiddleware from 'redux-axios-middleware'
 import logger from 'redux-logger'
 import DropdownAlert from 'react-native-dropdownalert'
-
 import reducers from './src/store/reducers'
 
 const client = axios.create({

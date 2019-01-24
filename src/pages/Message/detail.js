@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {
     SafeAreaView,
     WebView
-}  from 'react-native'
+} from 'react-native'
 import { connect } from 'react-redux'
 
 import styles from '../../styles'
@@ -31,7 +31,7 @@ import NavigationBar from '../../components/NavigationBar';
                 />
                 <WebView
                     style={styles.webView}
-                    source={{ uri: uri }}
+                    source={{ uri }}
                 />
             </SafeAreaView>
         )
