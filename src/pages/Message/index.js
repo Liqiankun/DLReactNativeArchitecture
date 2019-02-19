@@ -16,6 +16,7 @@ import { fetchMessageList } from '../../store/actions/message'
             q: 'react native'
         }).then()
     }
+    
     render() {
         const { loading, list, navigation } = this.props
         const { navigate } = navigation
