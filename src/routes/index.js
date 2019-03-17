@@ -126,6 +126,14 @@ const TabBarStack = createBottomTabNavigator({
         tabBarIcon: ({ focused }) => {
             const { routeName } = navigation.state
             return tabarIcons[routeName].render(focused)
+        },
+        tabBarOnPress: ({ defaultHandler }) => {
+            const { routeName } = navigation.state
+            if (routeName === 'Profile') {
+                navigation.navigate('Launch')
+            } else {
+                defaultHandler()
+            }
         }
     }),
     tabBarOptions: {

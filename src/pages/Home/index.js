@@ -3,14 +3,17 @@ import {
     Text,
     View,
     Button
-}  from 'react-native'
-
+} from 'react-native'
+import { connect } from 'react-redux'
+import { increaseUnreadCount } from '../../store/actions/message'
 import styles from '../../styles'
+import DLButton from '../../components/Button'
 
-export default class Home extends Component {
+class Home extends Component {
     render() {
-        const { navigation } = this.props
+        const { navigation, increase } = this.props
         const { navigate } = navigation
+
         return (
             <View style={styles.container}>
                 <Text>Home Page</Text>
@@ -18,7 +21,18 @@ export default class Home extends Component {
                     title='Go to Detail'
                     onPress={() => navigate('HomeDetail')}
                 />
+                <DLButton
+                    buttonStyle={styles.unreadButton}
+                    title='Unread Count +'
+                    onPress={() => increase()}
+                />
             </View>
         )
     }
 }
+
+const mapDispatchToProps = {
+    increase: increaseUnreadCount
+}
+
+export default connect(null, mapDispatchToProps)(Home)
