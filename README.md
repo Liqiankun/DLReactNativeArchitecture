@@ -5,3 +5,6 @@
 * `npm i`
 * `react-native link`
 * `react-native run-ios --simulator='iPhone XS'`
+
+## Upgarde
+Time to upgrade to 0.62+. Coming soon!
