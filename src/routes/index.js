@@ -1,11 +1,10 @@
 import React from 'react'
 import { Image } from 'react-native'
-import {
-    createBottomTabNavigator,
-    createAppContainer,
-    createStackNavigator,
-    createSwitchNavigator
-} from 'react-navigation'
+import { connect } from 'react-redux'
+
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import HomePage from '../pages/Home'
 import MessagePage from '../pages/Message'
@@ -18,8 +17,21 @@ import BadgeItem from '../components/BadgeTabbarItem'
 import styles from '../styles'
 
 function _renderTabbarIcon(icon) {
-	return <Image source={icon} style={styles.tabBarIcon} />
+    return <Image source={icon} style={styles.tabBarIcon} />
 }
+
+const Stack = createStackNavigator()
+const Tab = createBottomTabNavigator()
+
+const StackNavigatorOptions = {
+    headerStyle: {
+        backgroundColor: '#fff',
+        borderBottomWidth: 0,
+    },
+    headerTintColor: '#5B99FA',
+    headerBackTitle: ' '
+}
+
 
 const tabarIcons = {
     Home: {
@@ -43,118 +55,60 @@ const tabarIcons = {
     }
 }
 
-const HomeStack = createStackNavigator({
-    Home: {
-       screen: HomePage,
-       navigationOptions: {
-           title: '首页'
-       }
-    },
-    HomeDetail: {
-       screen: HomeDetailPage,
-       navigationOptions: {
-           title: '详情'
-       } 
-    }
-}, {
-    defaultNavigationOptions: {
-        headerStyle: {
-            backgroundColor: '#fff',
-            borderBottomWidth: 0,
-        },
-        headerTintColor: '#5B99FA',
-        headerBackTitle: null
-    }
-})
+HomeStack = () => (
+    <Stack.Navigator
+        screenOptions={StackNavigatorOptions}
+    >
+        <Stack.Screen name="Home" component={HomePage} options={{ title: '首页' }} />
+        <Stack.Screen name="HomeDetail" component={HomeDetailPage} options={{ title: '详情' }} />
+    </Stack.Navigator>
+)
 
-HomeStack.navigationOptions = ({ navigation }) => {
-    let tabBarVisible = true
-    if (navigation.state.index > 0) {
-        tabBarVisible = false
-    }
-    return {
-        tabBarVisible
-    }
-}
+MessageStack = () => (
+    <Stack.Navigator
+        screenOptions={StackNavigatorOptions}
+    >
+        <Stack.Screen name="Message" component={MessagePage} options={{ headerShown: false }} />
+        <Stack.Screen name="MessageDetail" component={MessageDetailPage} options={{ headerShown: false }} />
+    </Stack.Navigator>
+)
 
-const MessageStack = createStackNavigator({
-    Message: {
-        screen: MessagePage,
-        navigationOptions: {
-            header: null
-        }
-    },
-    MessageDetail: {
-        screen: MessageDetailPage,
-        navigationOptions: {
-            header: null
-        }
-    }
-}, {
-    defaultNavigationOptions: {
-        
-        headerStyle: {
-            backgroundColor: '#fff',
-            borderBottomWidth: 0,
-        },
-        headerTintColor: '#5B99FA',
-        headerBackTitle: null
-    }
-})
+const TabBarStack = () => (
+    <Tab.Navigator
+        tabBarOptions={{
+            activeTintColor: '#6699ff',
+            inactiveTintColor: '#999',
+        }}
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused }) => tabarIcons[route.name].render(focused),
+        })}
+    >
+        <Tab.Screen name="Home" component={HomeStack} options={({ route }) => ({
+            tabBarLabel: '首页',
+            tabBarVisible: route.state && route.state.index === 0
+        })} />
+        <Tab.Screen name="Message" component={MessageStack} options={{ tabBarLabel: '信息' }} />
+        <Tab.Screen name="Profile" component={ProfilePage} options={{ tabBarLabel: '我的' }} />
+    </Tab.Navigator>
+)
 
-const TabBarStack = createBottomTabNavigator({
-    Home: {
-        screen: HomeStack,
-        navigationOptions: {
-            tabBarLabel: '首页'
-        }   
-    },
-    Message: {
-        screen: MessageStack,
-        navigationOptions: {
-            tabBarLabel: '信息'
+AppStack = ({ isLaunching }) => (
+    <Stack.Navigator
+    >
+        {
+            isLaunching ?
+                <Stack.Screen name="Launch" component={LaunchPage} options={{ headerShown: false }} />
+                : <Stack.Screen name="TabBar" component={TabBarStack} options={{ headerShown: false }} />
         }
-    },
-    Profile: {
-        screen: ProfilePage,
-        navigationOptions: {
-            tabBarLabel: '我的'
-        }
-    }
-}, {
-    defaultNavigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused }) => {
-            const { routeName } = navigation.state
-            return tabarIcons[routeName].render(focused)
-        },
-        tabBarOnPress: ({ defaultHandler }) => {
-            const { routeName } = navigation.state
-            if (routeName === 'Profile') {
-                navigation.navigate('Launch')
-            } else {
-                defaultHandler()
-            }
-        }
-    }),
-    tabBarOptions: {
-        activeTintColor: '#6699ff',
-        inactiveTintColor: '#333'
-    }
-})
+    </Stack.Navigator>
+)
 
+const SwitchStack = ({ isLaunching }) => (
+    <NavigationContainer>
+        <AppStack isLaunching={isLaunching} />
+    </NavigationContainer>
+)
 
-const SwitchStack = createSwitchNavigator({
-    Launch: {
-        screen: LaunchPage,
-        navigationOptions: {
-            header: null
-        }
-    },
-    Tabbar: {
-        screen: TabBarStack
-    }
-}, {
-    initialRouteName: 'Launch'
-})
-
-export default createAppContainer(SwitchStack)
+export default connect((state) => ({
+    isLaunching: state.Login.isLaunching
+}))(SwitchStack)

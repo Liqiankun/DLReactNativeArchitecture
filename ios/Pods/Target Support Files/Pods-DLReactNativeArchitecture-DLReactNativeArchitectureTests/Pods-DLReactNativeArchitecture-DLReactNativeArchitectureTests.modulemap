@@ -1,0 +1,6 @@
+module Pods_DLReactNativeArchitecture_DLReactNativeArchitectureTests {
+  umbrella header "Pods-DLReactNativeArchitecture-DLReactNativeArchitectureTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

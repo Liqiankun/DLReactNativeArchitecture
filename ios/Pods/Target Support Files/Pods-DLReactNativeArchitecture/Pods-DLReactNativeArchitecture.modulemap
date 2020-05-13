@@ -1,0 +1,6 @@
+module Pods_DLReactNativeArchitecture {
+  umbrella header "Pods-DLReactNativeArchitecture-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -3,25 +3,25 @@ import {
     View,
     ImageBackground
 } from 'react-native'
+import { connect } from 'react-redux'
 
+import { changeStack } from '../../store/actions/login'
 import styles from '../../styles'
 import Button from '../../components/Button'
 
-export default class Launch extends Component {
+class Launch extends Component {
     render() {
-        const { navigation } = this.props
-        const { navigate } = navigation
         return (
             <View style={styles.container}>
-                <ImageBackground 
+                <ImageBackground
                     style={styles.launchImage}
                     source={require('../../images/launch_image.png')}
                 >
-                    <Button 
+                    <Button
                         title='跳过'
                         buttonStyle={styles.launchButton}
                         onPress={() => {
-                            navigate('Tabbar')
+                            this.props.switch()
                         }}
                     />
                 </ImageBackground>
@@ -29,3 +29,8 @@ export default class Launch extends Component {
         )
     }
 }
+
+
+export default connect(undefined, {
+    switch: changeStack
+})(Launch)
