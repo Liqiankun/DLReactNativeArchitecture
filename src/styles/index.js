@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
         resizeMode: 'cover'
     },
     buttonContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: 60,
         height: 30,
         borderRadius: 15,
@@ -143,6 +146,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#6699ff',
         marginTop: 10,
         width: 130
+    },
+    logoutButton: {
+        backgroundColor: '#6699ff',
+        width: 150,
+        height: 40,
+        borderRadius: 20
     }
 })
 

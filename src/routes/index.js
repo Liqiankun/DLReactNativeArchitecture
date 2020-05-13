@@ -106,11 +106,14 @@ AppStack = ({ isLaunching }) => (
   </Stack.Navigator>
 )
 
-const SwitchStack = ({ isLaunching }) => (
-  <NavigationContainer>
-    <AppStack isLaunching={isLaunching} />
-  </NavigationContainer>
-)
+const SwitchStack = ({ isLaunching }) => {
+  console.log('------', isLaunching)
+  return (
+    <NavigationContainer>
+      <AppStack isLaunching={isLaunching} />
+    </NavigationContainer>
+  )
+}
 
 export default connect((state) => ({
   isLaunching: state.Login.isLaunching

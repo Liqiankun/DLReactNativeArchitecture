@@ -9,6 +9,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case CHNAGE_STACK:
+            console.log('--------state', state.isLaunching)
             return {
                 ...state,
                 isLaunching: !state.isLaunching
