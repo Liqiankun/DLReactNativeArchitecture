@@ -32,7 +32,6 @@ const StackNavigatorOptions = {
   headerBackTitle: ' ',
 }
 
-
 const tabarIcons = {
   Home: {
     render: focused => {
@@ -55,7 +54,7 @@ const tabarIcons = {
   }
 }
 
-HomeStack = () => (
+const HomeStack = () => (
   <Stack.Navigator
     screenOptions={StackNavigatorOptions}
   >
@@ -64,7 +63,7 @@ HomeStack = () => (
   </Stack.Navigator>
 )
 
-MessageStack = () => (
+const MessageStack = () => (
   <Stack.Navigator
     screenOptions={StackNavigatorOptions}
   >
@@ -92,7 +91,7 @@ const TabBarStack = () => (
   </Tab.Navigator>
 )
 
-AppStack = ({ isLaunching }) => (
+const AppStack = ({ isLaunching }) => (
   <Stack.Navigator
     screenOptions={{
       animationEnabled: false
@@ -107,7 +106,6 @@ AppStack = ({ isLaunching }) => (
 )
 
 const SwitchStack = ({ isLaunching }) => {
-  console.log('------', isLaunching)
   return (
     <NavigationContainer>
       <AppStack isLaunching={isLaunching} />
