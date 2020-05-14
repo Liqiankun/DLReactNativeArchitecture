@@ -18,7 +18,7 @@ import styles from '../styles'
 import { store } from '../../App'
 import { changeStack } from '../store/actions/login'
 
-function _renderTabbarIcon(icon) {
+const _renderTabbarIcon = (icon) => {
   return <Image source={icon} style={styles.tabBarIcon} />
 }
 
@@ -60,8 +60,16 @@ const HomeStack = () => (
   <Stack.Navigator
     screenOptions={StackNavigatorOptions}
   >
-    <Stack.Screen name="Home" component={HomePage} options={{ title: '首页' }} />
-    <Stack.Screen name="HomeDetail" component={HomeDetailPage} options={{ title: '详情' }} />
+    <Stack.Screen
+      name="Home"
+      component={HomePage}
+      options={{ title: '首页' }}
+    />
+    <Stack.Screen
+      name="HomeDetail"
+      component={HomeDetailPage}
+      options={{ title: '详情' }}
+    />
   </Stack.Navigator>
 )
 
@@ -69,8 +77,16 @@ const MessageStack = () => (
   <Stack.Navigator
     screenOptions={StackNavigatorOptions}
   >
-    <Stack.Screen name="Message" component={MessagePage} options={{ headerShown: false, animationEnabled: false }} />
-    <Stack.Screen name="MessageDetail" component={MessageDetailPage} options={{ headerShown: false, animationEnabled: false }} />
+    <Stack.Screen
+      name="Message"
+      component={MessagePage}
+      options={{ headerShown: false }}
+    />
+    <Stack.Screen
+      name="MessageDetail"
+      component={MessageDetailPage}
+      options={{ headerShown: false }}
+    />
   </Stack.Navigator>
 )
 
@@ -118,8 +134,19 @@ const AppStack = ({ isLaunching }) => (
   >
     {
       isLaunching ?
-        <Stack.Screen name="Launch" component={LaunchPage} options={{ headerShown: false, animationEnabled: false }} />
-        : <Stack.Screen name="TabBar" component={TabBarStack} options={{ headerShown: false }} />
+        <Stack.Screen
+          name="Launch"
+          component={LaunchPage}
+          options={{
+            headerShown: false,
+            animationEnabled: false
+          }}
+        />
+        : <Stack.Screen
+          name="TabBar"
+          component={TabBarStack}
+          options={{ headerShown: false }}
+        />
     }
   </Stack.Navigator>
 )
@@ -127,7 +154,10 @@ const AppStack = ({ isLaunching }) => (
 const SwitchStack = ({ isLaunching, switchStack }) => {
   return (
     <NavigationContainer>
-      <AppStack isLaunching={isLaunching} switchStack={switchStack} />
+      <AppStack
+        isLaunching={isLaunching}
+        switchStack={switchStack}
+      />
     </NavigationContainer>
   )
 }
