@@ -21,7 +21,7 @@ class Launch extends Component {
                         title='跳过'
                         buttonStyle={styles.launchButton}
                         onPress={() => {
-                            this.props.switch()
+                            this.props.switchStack()
                         }}
                     />
                 </ImageBackground>
@@ -32,5 +32,5 @@ class Launch extends Component {
 
 
 export default connect(undefined, {
-    switch: changeStack
+    switchStack: changeStack
 })(Launch)

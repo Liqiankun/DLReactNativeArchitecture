@@ -48,7 +48,7 @@ const middlewareConfig = {
     }
 }
 
-const store = createStore(reducers, applyMiddleware(axiosMiddleware(client, middlewareConfig), logger))
+export const store = createStore(reducers, applyMiddleware(axiosMiddleware(client, middlewareConfig), logger))
 
 console.disableYellowBox = true
 

@@ -15,6 +15,8 @@ import LaunchPage from '../pages/Launch'
 import BadgeItem from '../components/BadgeTabbarItem'
 
 import styles from '../styles'
+import { store } from '../../App'
+import { changeStack } from '../store/actions/login'
 
 function _renderTabbarIcon(icon) {
   return <Image source={icon} style={styles.tabBarIcon} />
@@ -82,12 +84,29 @@ const TabBarStack = () => (
       tabBarIcon: ({ focused }) => tabarIcons[route.name].render(focused),
     })}
   >
-    <Tab.Screen name="Home" component={HomeStack} options={({ route }) => ({
-      tabBarLabel: '首页',
-      tabBarVisible: route.state && route.state.index === 0
-    })} />
-    <Tab.Screen name="Message" component={MessageStack} options={{ tabBarLabel: '信息' }} />
-    <Tab.Screen name="Profile" component={ProfilePage} options={{ tabBarLabel: '我的' }} />
+    <Tab.Screen name="Home"
+      component={HomeStack}
+      options={({ route }) => ({
+        tabBarLabel: '首页',
+        tabBarVisible: route.state && route.state.index === 0
+      })}
+    />
+    <Tab.Screen
+      name="Message"
+      component={MessageStack}
+      options={{ tabBarLabel: '信息' }}
+    />
+    <Tab.Screen
+      name="Profile"
+      component={ProfilePage}
+      options={{ tabBarLabel: '我的' }}
+      listeners={{
+        tabPress: e => {
+          store.dispatch(changeStack())
+          e.preventDefault()
+        }
+      }}
+    />
   </Tab.Navigator>
 )
 
@@ -105,10 +124,10 @@ const AppStack = ({ isLaunching }) => (
   </Stack.Navigator>
 )
 
-const SwitchStack = ({ isLaunching }) => {
+const SwitchStack = ({ isLaunching, switchStack }) => {
   return (
     <NavigationContainer>
-      <AppStack isLaunching={isLaunching} />
+      <AppStack isLaunching={isLaunching} switchStack={switchStack} />
     </NavigationContainer>
   )
 }

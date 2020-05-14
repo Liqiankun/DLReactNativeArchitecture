@@ -14,7 +14,7 @@ class Profile extends Component {
                 <DLButton
                     buttonStyle={styles.logoutButton}
                     title='Log out'
-                    onPress={() => this.props.switch()}
+                    onPress={() => this.props.switchStack()}
                 />
             </View>
         )
@@ -22,5 +22,5 @@ class Profile extends Component {
 }
 
 export default connect(undefined, {
-    switch: changeStack
+    switchStack: changeStack
 })(Profile)
